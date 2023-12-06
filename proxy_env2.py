@@ -9,7 +9,7 @@ import random
 
 OBSERVATION_N = 80
 
-SIM_URL = "http://127.0.0.1:3000/"
+SIM_URL = "http://localhost:3000/"
 
 ACTION_SPACE_LOW = 0
 ACTION_SPACE_HIGH = 1
@@ -60,6 +60,7 @@ class ProxyEnv2:
         "cold_start": "high",
         "fn_type": "cpu",
         "no_log": False,
+        # "app_types":[],
         # // optional
         "es": {
             # // ai, lass, hpa

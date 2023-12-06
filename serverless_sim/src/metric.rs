@@ -191,7 +191,7 @@ impl RecordFile {
             dag_type: "".to_owned(),
             cold_start: "".to_owned(),
             fn_type: "".to_owned(),
-            app_types: vec![],
+            // app_types: vec![],
             no_log: false,
             es: ESConfig {
                 up: "".to_owned(),

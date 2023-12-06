@@ -140,7 +140,7 @@ pub struct Config {
     /// cpu, data, mix
     pub fn_type: String,
     /// each stage control algorithm settings
-    pub app_types: Vec<APPConfig>,
+    // pub app_types: Vec<APPConfig>,
     pub es: ESConfig,
     /// whether to log the resultz
     pub no_log: bool,

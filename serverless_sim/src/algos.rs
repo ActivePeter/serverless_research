@@ -63,7 +63,7 @@ impl SimEnv {
             let mut walker = req_dag.new_dag_walker();
             'outer: while let Some(f) = walker.next(&req_dag.dag_inner) {
                 let fnid = req_dag.dag_inner[f];
-                if req.done_fns.contains(&fnid) || req.fn_node.contains_key(&fnid) {
+                if req.done_fns.contains_key(&fnid) || req.fn_node.contains_key(&fnid) {
                     // log::info!("req {} fn {} done, no need to scale for", req.req_id, fnid,);
                     continue;
                 }
@@ -71,7 +71,7 @@ impl SimEnv {
                 //确定前驱已完成
                 let parent_fns = env.func(fnid).parent_fns(env);
                 for p in &parent_fns {
-                    if req.get_fn_node(*p).is_none() || !req.done_fns.contains(p) {
+                    if req.get_fn_node(*p).is_none() || !req.done_fns.contains_key(p) {
                         // exist a parent fn not done
                         // log::info!(
                         //     "req {} fn {} parent_fn {} on node {} not done",
@@ -105,7 +105,7 @@ impl SimEnv {
             let mut walker = req_dag.new_dag_walker();
             'outer: while let Some(f) = walker.next(&req_dag.dag_inner) {
                 let fnid = req_dag.dag_inner[f];
-                if req.done_fns.contains(&fnid) {
+                if req.done_fns.contains_key(&fnid) {
                     // log::info!("req {} fn {} done, no need to scale for", req.req_id, fnid,);
                     continue;
                 }

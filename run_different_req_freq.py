@@ -35,10 +35,10 @@ class Task:
 
 algos=[
     ["hpa","hpa","rule"],
-    ["hpa","hpa","pass"],
+    ["no","no","pass"],
     # ["lass","lass","rule"],
     # ["fnsche","fnsche","fnsche"],
-    # ["faasflow","faasflow","faasflow"],
+    ["no","no","faasflow"],
 ]
 
 ts=[]

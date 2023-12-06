@@ -30,6 +30,7 @@ mod sche_fnsche;
 mod sche_pass;
 mod sche_pos;
 mod sche_rule_based;
+// mod sche_time_aware;
 mod sim_timer;
 
 #[macro_use]

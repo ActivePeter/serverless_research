@@ -38,11 +38,11 @@ pub struct Request {
     /// 函数节点被调度到的机器节点
     pub fn_node: HashMap<FnId, NodeId>,
 
-    ///完成执行的函数节点
-    pub done_fns: HashSet<FnId>,
+    ///完成执行的函数节点，时间
+    pub done_fns: HashMap<FnId, usize>,
 
     pub cur_frame_done: HashSet<FnId>,
-
+    //请求到达的时刻
     pub begin_frame: usize,
 
     pub end_frame: usize,
@@ -71,7 +71,7 @@ impl Request {
             req_id: env.req_alloc_req_id(),
             dag_i,
             fn_node: HashMap::new(),
-            done_fns: HashSet::new(),
+            done_fns: HashMap::new(),
             // fn_dag_walker: Topo::new(&env.dags.borrow()[dag_i].dag),
             // current_fn: None,
             begin_frame,
@@ -92,7 +92,7 @@ impl Request {
     pub fn parents_all_done(&self, env: &SimEnv, fnid: FnId) -> bool {
         let ps = env.func(fnid).parent_fns(env);
         for p in &ps {
-            if !self.done_fns.contains(p) {
+            if !self.done_fns.contains_key(p) {
                 return false;
             }
         }
@@ -129,7 +129,7 @@ impl Request {
 
     pub fn fn_done(&mut self, env: &SimEnv, fnid: FnId, current_frame: usize) {
         // log::info!("request {} fn {} done", self.req_id, fnid);
-        self.done_fns.insert(fnid);
+        self.done_fns.insert(fnid, current_frame);
         self.cur_frame_done.insert(fnid);
         if self.is_done(env) {
             self.end_frame = current_frame;

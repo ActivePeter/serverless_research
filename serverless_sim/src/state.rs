@@ -161,12 +161,12 @@ impl SimEnv {
                 req_id: req.req_id,
                 dag_id: req.dag_i,
                 dag_fn_2_node,
-                done_fns: req.done_fns.iter().map(|fnid| *fnid).collect(),
+                done_fns: req.done_fns.iter().map(|(fnid, _)| *fnid).collect(),
                 total_fn_cnt: req.fn_count(self),
                 working_fns: req
                     .fn_node
                     .iter()
-                    .filter(|(fnid, _)| !req.done_fns.contains(*fnid))
+                    .filter(|(fnid, _)| !req.done_fns.contains_key(*fnid))
                     .map(|(fnid, _)| *fnid)
                     .collect(), // next_fn_to_schedule: req.fn_2_bind_node().unwrap_or_else(|| (0, 0.into())).0,
             });

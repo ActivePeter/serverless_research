@@ -50,7 +50,7 @@ pub mod schedule_helper {
             for p in &parents {
                 match config {
                     CollectTaskConfig::PreAllDone => {
-                        if !req.done_fns.contains(p) {
+                        if !req.done_fns.contains_key(p) {
                             continue 'next_fn;
                         }
                     }

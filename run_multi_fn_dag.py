@@ -12,6 +12,7 @@ class Task:
             "cold_start": "high",
             "fn_type": "cpu",
             "no_log": False,
+            "app_types": [],
             "es": {
                 "up": up,
                 "down": down,
